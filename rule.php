@@ -108,6 +108,7 @@ class quizaccess_faceid extends quiz_access_rule_base
             'quiz_id' => $vars['quiz_id'],
             'metric_id' => $vars['student_id'],
             'sesskey' => $vars['sesskey'],
+            'auth_id' => $vars['auth_id'],
             'page' => $_SERVER['PHP_SELF'],
             'referer' => $_SERVER['HTTP_REFERER'],
             'test_mode' => $vars['test_mode']
@@ -162,6 +163,7 @@ class quizaccess_faceid extends quiz_access_rule_base
         $vars['quiz_id'] = $this->quiz->id;
         $vars['student_id'] = $DB->get_record('user', array('id' => $USER->id), 'idnumber', MUST_EXIST)->idnumber;
         $vars['sesskey'] = sesskey();
+        $vars['auth_id'] = optional_param('auth_id', 0, PARAM_TEXT) ?: false;
 
         return $vars;
     }
